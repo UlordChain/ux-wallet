@@ -1,0 +1,8 @@
+out/
+.idea/
+*.iml
+*.log
+*.log.gz
+test*.xlsx
+.gradle
+build/

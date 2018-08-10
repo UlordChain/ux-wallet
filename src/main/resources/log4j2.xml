@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36}:%L - %msg%n" />
+        </Console>
+        <RollingFile name="MyFile" fileName="./logs/uxwallet.log"
+                     filePattern="./logs/uxwallet-%d{yyyy-MM-dd}.log.gz">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36}:%L - %msg%n" />
+            <Policies>  
+		        <TimeBasedTriggeringPolicy modulate="true" interval="1"/>  
+		    </Policies>
+		    <DefaultRolloverStrategy>
+			    <Delete basePath="./logs" maxDepth="1">
+	                 <IfFileName glob="uxwallet-*.log" />
+	                 <IfLastModified age="30d" />    
+	            </Delete>
+            </DefaultRolloverStrategy>
+        </RollingFile>  
+    </Appenders>
+    <Loggers>
+        <Root level="debug">
+            <AppenderRef ref="Console" />
+	        <AppenderRef ref="MyFile" />
+        </Root>
+    </Loggers>
+</Configuration>
